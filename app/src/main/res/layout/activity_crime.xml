@@ -1,45 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:id="@+id/fragment_container"
     android:orientation="vertical"
     tools:context=".CrimeActivity">
 
-    <TextView
-        style="?android:listSeparatorTextViewStyle"
-        android:id="@+id/textview_label_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="title" />
 
-    <EditText
-        android:id="@+id/edittext_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="enter your title"
-        android:inputType="textPersonName" />
-
-    <TextView
-        android:id="@+id/textview_detail"
-        android:layout_width="match_parent"
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_height="wrap_content"
-        android:text="Details" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_date"/>
-    
-    <CheckBox
-        android:id="@+id/checkbox_solved"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-android:text="solved"
-        />
-
-</LinearLayout>
+</FrameLayout>
