@@ -26,7 +26,7 @@ public class CrimeRepository {
         }
     }
 
-    public void inserCrime(Crime crime) {
+    public void insertCrime(Crime crime) {
         mCrimes.add(crime);
     }
 
