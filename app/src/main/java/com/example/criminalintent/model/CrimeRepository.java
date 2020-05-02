@@ -48,6 +48,11 @@ public class CrimeRepository {
         mCrimes.remove(c);
     }
 
+    public int getPosition(UUID id){
+        Crime crime = getCrime(id);
+       return mCrimes.indexOf(crime);
+    }
+
     public Crime getCrime(UUID uuid) {
         for (Crime crime : mCrimes) {
             if (crime.getId().equals(uuid)) {

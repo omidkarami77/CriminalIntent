@@ -1,10 +1,12 @@
-package com.example.criminalintent;
+package com.example.criminalintent.controller;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.example.criminalintent.R;
 
 public abstract class SingleFragmentActivity extends AppCompatActivity {
 

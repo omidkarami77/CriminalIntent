@@ -1,10 +1,12 @@
-package com.example.criminalintent;
+package com.example.criminalintent.controller;
 
 import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.criminalintent.R;
 
 import java.util.UUID;
 

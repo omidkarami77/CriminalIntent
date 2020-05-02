@@ -1,6 +1,7 @@
 package com.example.criminalintent.model;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.UUID;
 
 public class Crime {
@@ -11,7 +12,8 @@ public class Crime {
 
     public Crime(){
         mId=UUID.randomUUID();
-        mDate=new Date();
+       // mDate=new Date();
+        mDate=randomDate();
     }
     public UUID getId() {
         return mId;
@@ -41,4 +43,19 @@ public class Crime {
     public void setSolved(boolean mSolved) {
         this.mSolved = mSolved;
     }
+
+   private Date randomDate() {
+        GregorianCalendar gc = new GregorianCalendar();
+        int year = randBetween(2000, 2022);
+        gc.set(gc.YEAR, year);
+        int dayOfYear = randBetween(1, gc.getActualMaximum(gc.DAY_OF_YEAR));
+        gc.set(gc.DAY_OF_YEAR, dayOfYear);
+
+        return gc.getTime();
+    }
+
+    private int randBetween(int start, int end) {
+        return start + (int)Math.round(Math.random() * (end - start));
+    }
+
 }

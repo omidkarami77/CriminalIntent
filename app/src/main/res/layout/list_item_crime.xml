@@ -1,23 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:padding="16dp"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:textSize="18sp"
-        android:id="@+id/text_view_title"
-        android:hint="title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+<ImageView
+    android:id="@+id/imageview_solved"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="16dp"
+    android:layout_marginRight="16dp"
+    android:scaleType="centerCrop"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:srcCompat="@drawable/ic_solved" />
 
+<TextView
+android:id="@+id/txtview_list_item_date"
+android:layout_width="0dp"
+android:layout_height="wrap_content"
+android:layout_marginStart="16dp"
+android:layout_marginLeft="16dp"
+android:layout_marginTop="16dp"
+android:layout_marginEnd="16dp"
+android:layout_marginRight="16dp"
+android:layout_marginBottom="16dp"
+android:textColor="@android:color/black"
+android:textSize="18sp"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintEnd_toStartOf="@+id/imageview_solved"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/txtview_list_item_title"
+tools:text="Date" />
 
-    <TextView
-        android:textSize="18sp"
-        android:hint="date"
-        android:id="@+id/text_view_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+<TextView
+android:id="@+id/txtview_list_item_title"
+android:layout_width="0dp"
+android:layout_height="wrap_content"
+android:layout_marginStart="16dp"
+android:layout_marginLeft="16dp"
+android:layout_marginTop="16dp"
+android:layout_marginEnd="16dp"
+android:layout_marginRight="16dp"
+android:textColor="@android:color/black"
+android:textSize="18sp"
+app:layout_constraintEnd_toStartOf="@+id/imageview_solved"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent"
+tools:text="Title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

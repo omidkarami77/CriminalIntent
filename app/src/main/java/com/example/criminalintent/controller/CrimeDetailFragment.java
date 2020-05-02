@@ -1,5 +1,7 @@
-package com.example.criminalintent;
+package com.example.criminalintent.controller;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -14,22 +16,26 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
+import com.example.criminalintent.DatePickerFragment;
+import com.example.criminalintent.R;
 import com.example.criminalintent.model.Crime;
 import com.example.criminalintent.model.CrimeRepository;
 
+import java.util.Date;
 import java.util.UUID;
-
-import static com.example.criminalintent.CrimeDetailActivity.EXTRA_CRIME_ID;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class CrimeDetailFragment extends Fragment {
+    private static final String DATE_PICKER_FRAGMENT_TAG = "DatePicker";
+    private static final int REQUEST_CODE_DATE_PICKER = 0;
     private Crime mCrime;
-    public static final String TAG="CrimeDetailFragment";
+    public static final String TAG = "CrimeDetailFragment";
     private EditText mEditTextTitle;
     private Button mButtonDate;
     private CheckBox mCheckBoxSolved;
@@ -41,7 +47,7 @@ public class CrimeDetailFragment extends Fragment {
     }
 
     public static CrimeDetailFragment newInstance(UUID id) {
-        
+
         Bundle args = new Bundle();
 
         CrimeDetailFragment fragment = new CrimeDetailFragment();
@@ -50,34 +56,6 @@ public class CrimeDetailFragment extends Fragment {
         fragment.setArguments(args);
 
         return fragment;
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        try {
-            CrimeRepository.getInstance().updateCrime(mCrime);
-        } catch (Exception e) {
-            Log.e(TAG,"cannot update crime",e);
-        }
-    }
-
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-//
-//        UUID crimeId = (UUID) getActivity()
-//                .getIntent()
-//                .getSerializableExtra(CrimeDetailActivity.EXTRA_CRIME_ID);
-
-
-        UUID crimeId= (UUID) getArguments().getSerializable(ARG_CRIME_ID);
-        mCrime = CrimeRepository.getInstance().getCrime(crimeId);
-
-
-
     }
 
     @Override
@@ -97,7 +75,15 @@ public class CrimeDetailFragment extends Fragment {
                 mCrime.setSolved(isChecked);
             }
         });
-        mButtonDate.setClickable(false);
+        mButtonDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerFragment datePickerFragment = DatePickerFragment.newInstance(mCrime.getDate());
+                // create parent child  between CrimeDetailFragment and DatePickerFragment
+                datePickerFragment.setTargetFragment(CrimeDetailFragment.this, REQUEST_CODE_DATE_PICKER);
+                datePickerFragment.show(getFragmentManager(), DATE_PICKER_FRAGMENT_TAG);
+            }
+        });
         mEditTextTitle.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -117,4 +103,49 @@ public class CrimeDetailFragment extends Fragment {
 
         return view;
     }
+
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        try {
+            CrimeRepository.getInstance().updateCrime(mCrime);
+        } catch (Exception e) {
+            Log.e(TAG, "cannot update crime", e);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        if (resultCode != Activity.RESULT_OK || data == null)
+            return;
+
+        if (requestCode == REQUEST_CODE_DATE_PICKER) {
+            Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_CRIME_DATE);
+            mCrime.setDate(date);
+
+            mButtonDate.setText(date.toString());
+        }
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+//
+//        UUID crimeId = (UUID) getActivity()
+//                .getIntent()
+//                .getSerializableExtra(CrimeDetailActivity.EXTRA_CRIME_ID);
+
+
+        UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
+        mCrime = CrimeRepository.getInstance().getCrime(crimeId);
+
+
+    }
+
 }

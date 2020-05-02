@@ -7,7 +7,7 @@
     android:padding="16dp"
     android:id="@+id/fragment_container"
     android:orientation="vertical"
-    tools:context=".CrimeDetailActivity">
+    tools:context=".controller.CrimeDetailActivity">
 
 
 </FrameLayout>
