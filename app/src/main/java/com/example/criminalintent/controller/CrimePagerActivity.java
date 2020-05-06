@@ -34,9 +34,9 @@ public class CrimePagerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crime_pager);
-        mCrimes = CrimeRepository.getInstance().getCrimes();
+        mCrimes = CrimeRepository.getInstance(getApplicationContext()).getCrimes();
         UUID id = (UUID) getIntent().getSerializableExtra(EXTRA_CRIME_ID);
-        int position = CrimeRepository.getInstance().getPosition(id);
+        int position = CrimeRepository.getInstance(getApplicationContext()).getPosition(id);
         mViewpager = findViewById(R.id.viewpager_crime);
         mViewpager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @NonNull

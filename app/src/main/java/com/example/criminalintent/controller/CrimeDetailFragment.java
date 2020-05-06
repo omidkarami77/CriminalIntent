@@ -111,7 +111,7 @@ public class CrimeDetailFragment extends Fragment {
         super.onPause();
 
         try {
-            CrimeRepository.getInstance().updateCrime(mCrime);
+            CrimeRepository.getInstance(getActivity()).updateCrime(mCrime);
         } catch (Exception e) {
             Log.e(TAG, "cannot update crime", e);
         }
@@ -143,9 +143,10 @@ public class CrimeDetailFragment extends Fragment {
 
 
         UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
-        mCrime = CrimeRepository.getInstance().getCrime(crimeId);
+        mCrime = CrimeRepository.getInstance(getActivity()).getCrime(crimeId);
 
 
     }
+
 
 }
