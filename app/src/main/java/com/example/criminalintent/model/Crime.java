@@ -9,11 +9,9 @@ public class Crime {
     private String mtitle;
     private Date mDate;
     private boolean mSolved;
+    private String mSuspect;
 
     public Crime(){
-       // mId=UUID.randomUUID();
-       // mDate=new Date();
-       // mDate=randomDate();
    this(UUID.randomUUID());
     }
     public Crime(UUID uuid){
@@ -24,6 +22,13 @@ public class Crime {
         return mId;
     }
 
+    public String getSuspect() {
+        return mSuspect;
+    }
+
+    public void setSuspect(String mSuspect) {
+        this.mSuspect = mSuspect;
+    }
 
     public String getTitle() {
         return mtitle;

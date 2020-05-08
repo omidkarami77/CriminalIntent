@@ -72,7 +72,6 @@ public class CrimeListFragment extends Fragment {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //   Intent intent = CrimeDetailActivity.newIntent(getActivity(), mCrime.getId());
                     Intent intent = CrimePagerActivity.newIntent(getActivity(), mCrime.getId());
                     startActivity(intent);
                 }
@@ -83,6 +82,7 @@ public class CrimeListFragment extends Fragment {
         public void bindCrime(Crime crime) {
             mTextViewTitle.setText(crime.getTitle());
             mTextViewDate.setText(crime.getDate().toString());
+
             mImageViewSolved.setVisibility(crime.isSolved() ? View.VISIBLE : View.GONE);
             mCrime = crime;
 
@@ -121,8 +121,6 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull CrimeHolder holder, int position) {
-//holder.mTextViewTitle.setText(mCrimes.get(position).getTitle());
-//holder.mTextViewDate.setText(mCrimes.get(position).getDate().toString());
             holder.bindCrime(mCrimes.get(position));
 
         }
